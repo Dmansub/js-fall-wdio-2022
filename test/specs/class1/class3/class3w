@@ -1,0 +1,47 @@
+const { expect } = require("chai");
+const { it } = require("mocha");
+
+   
+it('Verify error is displayed for incorrect login credentials', async () => {
+
+   
+})
+
+  it('Verify default state of login fields', async () => {
+        /**
+         * Steps:
+         * 1. Launch facebook.com
+         * 2. Verify loginEmail has default text as "Email address or phone number"
+         * 3. Verify loginPassword has default text as "Password"
+         * 4. Verify loginButton has default text as "Log in"
+         */
+
+        // 1. Launch facebook.com
+        await browser.url('/');
+
+        // 2. Verify loginEmail has default text as "Email address or phone number"
+        expectedLoginEmailFieldCopy = "Email address or phone number";
+        const loginEmailField = await $('input[data-testid*=al_e]');
+        /*
+            value of placeholder attribute is displayed in the field
+
+            placeholder-value === expectedLoginEmailFieldCopy
+        */
+        const actualLoginEmailFieldCopy = await loginEmailField.getAttribute('placeholder');
+        expect(actualLoginEmailFieldCopy, 'Login Email field copy is NOT as expected').to.equal(expectedLoginEmailFieldCopy)
+
+        // 3. Verify loginPassword has default text as "Password"
+        expectedLoginPwdFieldCopy = "Password";
+        const loginPasswordField = await $('input[data-testid=royal_pass]');
+        const actualLoginPwdFieldCopy = await loginPasswordField.getAttribute('placeholder');
+
+        expect(actualLoginPwdFieldCopy, 'Login Password field copy is NOT as expected').to.equal(expectedLoginPwdFieldCopy)
+
+        expectedLoginButtonCopy = "Log in";
+        const loginButton = await $('<button>');
+        const actualLoginButtonCopy = await loginButton.getText();
+
+        expect(actualLoginButtonCopy, 'Login Button copy is NOT as expected').to.equal(expectedLoginButtonCopy)
+
+
+    });
